@@ -5,7 +5,14 @@ const {validateCategory} = require('../helpers/helper_functions');
 
 //const GetAllProducts = async (req, res) => {};
 
-//const GetProductByCode = async (req, res) => {};
+const GetProductByCode =(req,res)=>{
+    const category=categories.find(c=>c.id===parseInt(req.params.id));
+    if(!category){
+        res.status(404).send('The Category with the given ID not found !');
+    }else{
+        res.send(category);
+    }
+};
 
 //const AddProduct = async (req, res) => {};
 const AddProduct =  (req,res)=>{
@@ -31,7 +38,7 @@ const AddProduct =  (req,res)=>{
 module.exports = {
     //GetAllProducts,
 
-    //GetProductByCode,
+    GetProductByCode,
 
     AddProduct,
     //EditProductByCode,
