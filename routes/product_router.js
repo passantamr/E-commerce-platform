@@ -6,7 +6,7 @@ const product_controller= require('../controller/product_controller');
 productRouter.get('/:id', product_controller.GetProductByCode);
 //productRouter.post('Link',productController.APIName);
 //productRouter.put('Link',productController.APIName);
-//productRouter.delete('Link',productController.APIName);
+productRouter.delete('/:id',product_controller.DeleteProductByCode);
 productRouter.post('/',product_controller.AddProduct);
 module.exports = {
 

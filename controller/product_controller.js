@@ -34,7 +34,15 @@ const AddProduct =  (req,res)=>{
 //const EditProductByCode = async (req, res) => {};
 
 //const DeleteProductByCode = async (req, res) => {};
+const DeleteProductByCode = (req,res)=>{
+    const category=categories.find(c=>c.id===parseInt(req.params.id));
+    if(!category)
+        res.status(404).send('The Category with the given ID not found !');
+    const index = categories.indexOf(category);
+    categories.splice(index, 1);
 
+    res.send(category);
+};
 module.exports = {
     //GetAllProducts,
 
@@ -43,6 +51,6 @@ module.exports = {
     AddProduct,
     //EditProductByCode,
 
-    //DeleteProductByCode
+    DeleteProductByCode
 };
 
