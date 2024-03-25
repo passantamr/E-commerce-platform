@@ -15,7 +15,22 @@ const GetProductByCode =(req,res)=>{
 };
 
 //const AddProduct = async (req, res) => {};
-
+const AddProduct =  (req,res)=>{
+    const result =  validateCategory(req.body);     
+    if(result.error){
+        res.status(400).send(result.error.details[0].message);
+        console.log(result);
+        return;
+    }     
+        const category={
+            id: (categories.length)+1,
+            name: req.body.name
+        };
+        categories.push(category);
+        res.send(category);    
+};
+    
+    
 //const EditProductByCode = async (req, res) => {};
 
 //const DeleteProductByCode = async (req, res) => {};
@@ -25,8 +40,7 @@ module.exports = {
 
     GetProductByCode,
 
-    //AddProduct,
-
+    AddProduct,
     //EditProductByCode,
 
     //DeleteProductByCode

@@ -7,7 +7,8 @@ productRouter.get('/:id', product_controller.GetProductByCode);
 //productRouter.post('Link',productController.APIName);
 //productRouter.put('Link',productController.APIName);
 //productRouter.delete('Link',productController.APIName);
-
+productRouter.post('/',product_controller.AddProduct);
 module.exports = {
+
     productRouter,
 };
