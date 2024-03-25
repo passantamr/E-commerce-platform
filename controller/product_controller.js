@@ -1,11 +1,18 @@
-//const Joi = require('joi');
+const joi = require('joi');
 const {categories} = require('../models/product');
-const {helperFunctions} = require('../helpers/helper_functions');
+const {validateCategory} = require('../helpers/helper_functions');
 ////////////// insert Your API ////////////
 
 //const GetAllProducts = async (req, res) => {};
 
-//const GetProductByCode = async (req, res) => {};
+const GetProductByCode =(req,res)=>{
+    const category=categories.find(c=>c.id===parseInt(req.params.id));
+    if(!category){
+        res.status(404).send('The Category with the given ID not found !');
+    }else{
+        res.send(category);
+    }
+};
 
 //const AddProduct = async (req, res) => {};
 
@@ -16,7 +23,7 @@ const {helperFunctions} = require('../helpers/helper_functions');
 module.exports = {
     //GetAllProducts,
 
-    //GetProductByCode,
+    GetProductByCode,
 
     //AddProduct,
 
