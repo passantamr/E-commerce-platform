@@ -3,11 +3,12 @@ const productRouter = Router();
 const product_controller= require('../controller/product_controller');
 
 //for simplisty assume link is /
-//productRouter.get('/', product_controller.GetAllProducts);
+productRouter.get('/:id', product_controller.GetProductByCode);
 //productRouter.post('Link',productController.APIName);
-productRouter.put('/:id',product_controller.EditProductByCode);
+//productRouter.put('Link',productController.APIName);
 //productRouter.delete('Link',productController.APIName);
-
+productRouter.post('/',product_controller.AddProduct);
 module.exports = {
-    productRouter
+
+    productRouter,
 };
