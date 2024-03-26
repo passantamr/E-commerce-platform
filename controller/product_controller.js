@@ -25,6 +25,7 @@ const EditProductByCode = (req,res)=>{
     category.name=req.body.name;
     res.send(category);
     }; 
+ 
 
 //const DeleteProductByCode = async (req, res) => {};
 
