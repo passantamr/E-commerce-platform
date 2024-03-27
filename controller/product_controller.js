@@ -67,7 +67,8 @@ module.exports = {
     GetProductByCode,
 
     AddProduct,
-    //EditProductByCode,
+    
+    EditProductByCode,
 
     DeleteProductByCode
 };
