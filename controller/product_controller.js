@@ -3,7 +3,9 @@ const {categories} = require('../models/product');
 const {validateCategory} = require('../helpers/helper_functions');
 ////////////// insert Your API ////////////
 
-//const GetAllProducts = async (req, res) => {};
+const GetAllProducts = async (req, res) => {
+    res.send(categories);
+};
 
 const GetProductByCode =(req,res)=>{
     const category=categories.find(c=>c.id===parseInt(req.params.id));
@@ -60,7 +62,7 @@ const DeleteProductByCode = (req,res)=>{
     res.send(category);
 };
 module.exports = {
-    //GetAllProducts,
+    GetAllProducts,
 
     GetProductByCode,
 
