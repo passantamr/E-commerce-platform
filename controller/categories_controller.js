@@ -4,7 +4,12 @@ const {validateCategory} = require('../helpers/helper_functions');
 ////////////// insert Your API ////////////
 
 const GetAllProducts = async (req, res) => {
-    res.send(categories);
+    try{
+        const allCatigories = await categories.find({});
+        res.status(200).send(allCatigories);
+    }catch(error){
+        res.status(400).send(error);
+    }
 };
 
 const GetProductByCode =async (req,res)=>{
