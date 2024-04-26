@@ -7,12 +7,12 @@ const GetAllProducts = async (req, res) => {
     res.send(categories);
 };
 
-const GetProductByCode =(req,res)=>{
-    const category=categories.find(c=>c.id===parseInt(req.params.id));
-    if(!category){
-        res.status(404).send('The Category with the given ID not found !');
-    }else{
-        res.send(category);
+const GetProductByCode =async (req,res)=>{
+    try{
+        const category = await categories.findOne({code: req.params.code});
+        res.status(200).send(category);
+    }catch(error){
+        res.status(400).send(error);
     }
 };
 
