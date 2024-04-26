@@ -1,5 +1,5 @@
 const joi = require('joi');
-const {categories} = require('../models/product');
+const {categories} = require('../models/categories');
 const {validateCategory} = require('../helpers/helper_functions');
 ////////////// insert Your API ////////////
 
