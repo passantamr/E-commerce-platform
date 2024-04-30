@@ -51,12 +51,66 @@ const addproduct = async (req, res) => {
         res.status(400).send(error);
     }
 };
+const editproduct = async(req,res)=>{
+
+    try{
+        
+        const product = await products.findOne({$and: [
+            { code: req.params.code },
+            { categoryId: req.params.categoryId}
+          ]
+        });
+        if(product){
+            if(req.body.name){
+                product.name = req.body.name;
+            }
+            if(req.body.code){
+                product.code= req.body.code;
+            }
+            if (req.body.categoryId) {
+                if (!(await findcategory(req.body.categoryId))) {
+                    return res.status(404).send("This category is not found");
+                } else {
+                    product.categoryId = req.body.categoryId;
+                }
+            }
+            
+                await product.save();
+                res.status(200).send(product);
+        }else{
+            res.status(404).send("You do not have the authentication");
+        }
+        
+    }catch(error){
+        res.status(400).send(error);
+    }
+};
+
+const deleteproduct = async(req,res)=>{
+    try{
+        const product = await products.findOne({$and: [
+            { code: req.params.code },
+            { categoryId: req.params.categoryId}
+          ]
+        });
+        if (product)
+        {
+            await products.deleteOne({code: req.params.code});
+            res.status(200).send(product);
+        }
+        else{
+            res.status(404).send("You do not have the authentication");
+        }
+    }catch(error){
+        res.status(400).send(error);
+    }
+};
+
 module.exports={
     getAllProducts,
     getAllProductsByCategoryId,
     getproductByCode,
-    addproduct
-    /*getproductByCode,
+    addproduct,
     editproduct,
-    deleteproduct*/
+    deleteproduct
 };
