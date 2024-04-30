@@ -1,5 +1,6 @@
 const joi = require('joi');
 const {categories} = require('../models/categories');
+const {products} = require('../models/product');
 const {validateCategory} = require('../helpers/helper_functions');
 ////////////// insert Your API ////////////
 
@@ -57,9 +58,10 @@ const EditProductByCode = async (req,res)=>{
 const DeleteProductByCode = async (req, res) => {
 
     try {
-        const category= await categories.deleteOne({code:req.params.code});
+        const categorieswithcode = await categories.findOne({code: req.params.code});
+        await products.deleteMany({categoryId:categorieswithcode._id});
+        const category= await categories.deleteMany({code:req.params.code});
         res.status(200).send(category);
-        await category.save();
     } catch (error) {
         
         res.status(400).send(error);
